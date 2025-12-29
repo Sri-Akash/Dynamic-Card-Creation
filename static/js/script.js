@@ -6,13 +6,6 @@ const price = document.getElementById('price')
 const description = document.getElementById('description')
 const productId = document.getElementById("productId")
 
-// imageUrl.value = "https://www.mcubeinfotech.com/static/img/hero-img.png"
-// name.value = "Mcube Infotech"
-// category.value = "Software Company"
-// stock.value = "7"
-// price.value = "1000"
-// description.value = "Empowering Your Business with Innovative Solutions Your partner for tailored SaaS solutions on Window Apps Development, seamless UI/UX design, and innovative web development."
-
 const form = document.querySelector('form')
 const loadProductContainer = document.querySelector("#loadProductContainer")
 
@@ -172,6 +165,25 @@ function updateData(data, id) {
 }
 
 function deleteProduct(id) {
+    fetch(`/product/delete?id=${id}`, {
+        method: "DELETE",
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status == "success") {
+                alert(data.message)
+                getData()
+            }
+            else {
+                throw new Error(data.message);
+            }
+        })
+        .catch(err => {
+            alert(err)
+        })
+}
+
+function deleteProducts(id) {
     fetch(`/product/delete?id=${id}`, {
         method: "DELETE",
     })
