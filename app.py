@@ -167,4 +167,5 @@ def deleteProduct():
         return jsonify({"status": "error", "message": f"Error {str(e)}"})
       
 
-app.run(debug=True)
+if "__main__" == __name__:
+    app.run(debug=True)
