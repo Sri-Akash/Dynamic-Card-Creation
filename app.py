@@ -4,6 +4,8 @@ from models import Product
 
 app = Flask(__name__)
 
+print(__name__)
+
 try:
     connect(host="mongodb://localhost:27017/DynamicCardCreation")
     if connection.get_connection():
